@@ -38,4 +38,9 @@ public class ItemsMixin {
     private static Item.Properties revanil$goldenCarrotEffect(Item.Properties instance, FoodProperties foodProperties, Operation<Item.Properties> original) {
         return instance.food(foodProperties, RConsumables.GOLDEN_CARROT);
     }
+
+    @WrapOperation(method = "<clinit>", slice = @Slice(from = @At(value="CONSTANT", args="stringValue=popped_chorus_fruit", ordinal = 0)), at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/Items;registerItem(Ljava/lang/String;)Lnet/minecraft/world/item/Item;", ordinal = 0))
+    private static Item revanil$poppedChorusFruit(String name, Operation<Item> original) {
+        return Items.registerItem(name, (new Item.Properties()).food(RFoods.POPPED_CHORUS_FRUIT, RConsumables.POPPED_CHORUS_FRUIT));
+    }
 }

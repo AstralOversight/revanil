@@ -1,5 +1,7 @@
 accessWidener v2 official
 
+accessible method net/minecraft/world/item/consume_effects/ConsumeEffect$Type register (Ljava/lang/String;Lcom/mojang/serialization/MapCodec;Lnet/minecraft/network/codec/StreamCodec;)Lnet/minecraft/world/item/consume_effects/ConsumeEffect$Type;
+
 accessible method net/minecraft/world/item/FireChargeItem playSound (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V
 
 accessible method net/minecraft/world/item/Items registerItem (Ljava/lang/String;Lnet/minecraft/world/item/Item$Properties;)Lnet/minecraft/world/item/Item;
