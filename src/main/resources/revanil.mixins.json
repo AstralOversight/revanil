@@ -18,6 +18,7 @@
     "ItemMixin",
     "ItemsMixin",
     "JsonDataLoaderMixin",
+    "OreVeinifierMixin",
     "PlayerMixin",
     "RespawnAnchorBlockMixin",
     "SnowLayerBlockMixin",

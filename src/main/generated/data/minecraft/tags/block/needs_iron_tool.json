@@ -1,0 +1,12 @@
+{
+  "replace": true,
+  "values": [
+    "minecraft:deepslate_iron_ore",
+    "minecraft:deepslate_gold_ore",
+    "minecraft:deepslate_emerald_ore",
+    "minecraft:diamond_ore",
+    "minecraft:diamond_block",
+    "minecraft:redstone_ore",
+    "minecraft:redstone_block"
+  ]
+}

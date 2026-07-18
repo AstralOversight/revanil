@@ -17,6 +17,7 @@ import java.util.function.Function;
 
 public class RBlocks {
     public static final Block MALACHITE_BLOCK = register("malachite_block", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.GRANITE).mapColor(MapColor.COLOR_GREEN));
+    public static final Block HEMATITE_BLOCK = register("hematite_block", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.ANDESITE).mapColor(MapColor.COLOR_GRAY));
 
     private static Block register(String name, Function<BlockBehaviour.Properties, Block> blockFactory, BlockBehaviour.Properties properties) {
         //block

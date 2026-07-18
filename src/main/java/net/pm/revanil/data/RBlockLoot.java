@@ -27,5 +27,6 @@ public class RBlockLoot extends FabricBlockLootSubProvider {
         HolderLookup.RegistryLookup<Enchantment> enchantments = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
 
         add(RBlocks.MALACHITE_BLOCK, createSilkTouchDispatchTable(RBlocks.MALACHITE_BLOCK, this.applyExplosionDecay(RBlocks.MALACHITE_BLOCK, LootItem.lootTableItem(RItems.MALACHITE_CHUNK).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F))).apply(ApplyBonusCount.addUniformBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))).apply(LimitCount.limitCount(IntRange.range(1, 4))))));
+        add(RBlocks.HEMATITE_BLOCK, createSilkTouchDispatchTable(RBlocks.HEMATITE_BLOCK, this.applyExplosionDecay(RBlocks.HEMATITE_BLOCK, LootItem.lootTableItem(RItems.HEMATITE_CHUNK).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F))).apply(ApplyBonusCount.addUniformBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))).apply(LimitCount.limitCount(IntRange.range(1, 4))))));
     }
 }

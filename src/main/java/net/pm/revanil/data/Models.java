@@ -17,6 +17,7 @@ public class Models extends FabricModelProvider {
     @Override
     public void generateBlockStateModels(BlockModelGenerators blockStateModelGenerator) {
         blockStateModelGenerator.createTrivialCube(RBlocks.MALACHITE_BLOCK);
+        blockStateModelGenerator.createTrivialCube(RBlocks.HEMATITE_BLOCK);
     }
 
     @Override
@@ -25,5 +26,6 @@ public class Models extends FabricModelProvider {
         itemModelGenerator.generateFlatItem(RItems.GOLD_UPGRADE_SMITHING_TEMPLATE, ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(RItems.DIAMOND_UPGRADE_SMITHING_TEMPLATE, ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(RItems.MALACHITE_CHUNK, ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(RItems.HEMATITE_CHUNK, ModelTemplates.FLAT_ITEM);
     }
 }

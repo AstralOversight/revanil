@@ -121,7 +121,30 @@ public class Recipes extends FabricRecipeProvider {
                         .unlockedBy("has_material", has(Items.NAUTILUS_SHELL))
                         .save(recipeExporter);
 
-                //Chainmail Armor
+                chainmail();
+
+                malachite();
+                hematite();
+
+                shaped(RecipeCategory.BUILDING_BLOCKS, Blocks.GRASS_BLOCK)
+                        .pattern("M")
+                        .pattern("#")
+                        .define('M', Blocks.SHORT_GRASS)
+                        .define('#', Blocks.DIRT)
+                        .unlockedBy("has_material", has(Blocks.SHORT_GRASS))
+                        .save(recipeExporter);
+
+                shaped(RecipeCategory.REDSTONE, Blocks.TNT)
+                        .pattern("G#")
+                        .pattern("#G")
+                        .define('G', Items.GUNPOWDER)
+                        .define('#', ItemTags.SAND)
+                        .unlockedBy("has_material", has(Items.GUNPOWDER))
+                        .save(recipeExporter);
+            }
+
+            //Chainmail Armor
+            public void chainmail() {
                 shaped(RecipeCategory.TOOLS, Items.CHAINMAIL_HELMET)
                         .pattern("###")
                         .pattern("# #")
@@ -148,7 +171,9 @@ public class Recipes extends FabricRecipeProvider {
                         .define('#', Items.IRON_CHAIN)
                         .unlockedBy("has_material", has(Items.IRON_INGOT))
                         .save(recipeExporter);
+            }
 
+            public void malachite() {
                 shaped(RecipeCategory.BUILDING_BLOCKS, RBlocks.MALACHITE_BLOCK)
                         .pattern("##")
                         .pattern("##")
@@ -161,6 +186,21 @@ public class Recipes extends FabricRecipeProvider {
                 SimpleCookingRecipeBuilder.blasting(Ingredient.of(RItems.MALACHITE_CHUNK), RecipeCategory.MISC, CookingBookCategory.MISC, Items.COPPER_NUGGET, 0.5f, 100)
                         .unlockedBy("has_material", has(RItems.MALACHITE_CHUNK))
                         .save(recipeExporter, getSimpleRecipeName(Items.COPPER_NUGGET) + "_from_blasting_" + getSimpleRecipeName(RItems.MALACHITE_CHUNK));
+            }
+
+            public void hematite() {
+                shaped(RecipeCategory.BUILDING_BLOCKS, RBlocks.HEMATITE_BLOCK)
+                        .pattern("##")
+                        .pattern("##")
+                        .define('#', RItems.HEMATITE_CHUNK)
+                        .unlockedBy("has_material", has(RItems.HEMATITE_CHUNK))
+                        .save(recipeExporter);
+                SimpleCookingRecipeBuilder.smelting(Ingredient.of(RItems.HEMATITE_CHUNK), RecipeCategory.MISC, CookingBookCategory.MISC, Items.IRON_NUGGET, 0.5f, 200)
+                        .unlockedBy("has_material", has(RItems.HEMATITE_CHUNK))
+                        .save(recipeExporter, getSimpleRecipeName(Items.IRON_NUGGET) + "_from_smelting_" + getSimpleRecipeName(RItems.HEMATITE_CHUNK));
+                SimpleCookingRecipeBuilder.blasting(Ingredient.of(RItems.HEMATITE_CHUNK), RecipeCategory.MISC, CookingBookCategory.MISC, Items.IRON_NUGGET, 0.5f, 100)
+                        .unlockedBy("has_material", has(RItems.HEMATITE_CHUNK))
+                        .save(recipeExporter, getSimpleRecipeName(Items.IRON_NUGGET) + "_from_blasting_" + getSimpleRecipeName(RItems.HEMATITE_CHUNK));
             }
 
             public void genUpgradeTemplate(Item template, Item material, Item core, Item other) {

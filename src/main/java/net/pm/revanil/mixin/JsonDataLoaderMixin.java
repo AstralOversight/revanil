@@ -14,7 +14,7 @@ import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 @Mixin(SimpleJsonResourceReloadListener.class)
 public class JsonDataLoaderMixin {
     @Unique
-    private static LinkedHashSet<Identifier> banned = new LinkedHashSet<>();
+    private static final LinkedHashSet<Identifier> banned = new LinkedHashSet<>();
 
     static {
         banRecipe("iron_axe");
@@ -66,6 +66,7 @@ public class JsonDataLoaderMixin {
         banRecipe("netherite_boots_smithing");
         banRecipe("netherite_horse_armor_smithing");
         banRecipe("netherite_nautilus_armor_smithing");
+        banRecipe("tnt");
     }
 
     @Unique

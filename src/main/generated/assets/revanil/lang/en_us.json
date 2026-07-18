@@ -1,8 +1,11 @@
 {
+  "block.revanil.hematite_block": "Hematite Block",
   "block.revanil.malachite_block": "Malachite Block",
   "item.minecraft.smithing_template.netherite_upgrade.applies_to": "Gold Equipment",
   "item.revanil.diamond_upgrade_smithing_template": "Diamond Upgrade",
   "item.revanil.gold_upgrade_smithing_template": "Gold Upgrade",
+  "item.revanil.hematite_block": "Hematite Block",
+  "item.revanil.hematite_chunk": "Hematite Chunk",
   "item.revanil.iron_upgrade_smithing_template": "Iron Upgrade",
   "item.revanil.malachite_block": "Malachite Block",
   "item.revanil.malachite_chunk": "Malachite Chunk",

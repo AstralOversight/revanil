@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "#": "#minecraft:sand",
+    "G": "minecraft:gunpowder"
+  },
+  "pattern": [
+    "G#",
+    "#G"
+  ],
+  "result": {
+    "id": "minecraft:tnt"
+  }
+}
