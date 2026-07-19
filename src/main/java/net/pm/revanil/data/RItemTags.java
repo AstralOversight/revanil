@@ -5,11 +5,11 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.references.BlockItemIds;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.pm.revanil.Revanil;
 
@@ -24,8 +24,8 @@ public class RItemTags extends FabricTagsProvider.ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider wrapperLookup) {
-        valueLookupBuilder(ItemTags.GAZE_DISGUISE_EQUIPMENT)
-                .add(Items.DRAGON_HEAD);
+        tag(ItemTags.GAZE_DISGUISE_EQUIPMENT)
+                .add(BlockItemIds.DRAGON_HEAD.item());
     }
 
     public Identifier id(ItemLike item) {

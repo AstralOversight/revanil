@@ -1,6 +1,7 @@
 package net.pm.revanil.world.level.levelgen;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -19,8 +20,8 @@ public class RSurfaceRules {
             return instance.group(ResourceKey.codec(Registries.NOISE).fieldOf("noise").forGetter(NoiseThresholdConditionSource3d::noise), Codec.DOUBLE.fieldOf("min_threshold").forGetter(NoiseThresholdConditionSource3d::minThreshold), Codec.DOUBLE.fieldOf("max_threshold").forGetter(NoiseThresholdConditionSource3d::maxThreshold)).apply(instance, NoiseThresholdConditionSource3d::new);
         }));
 
-        public KeyDispatchDataCodec<? extends SurfaceRules.ConditionSource> codec() {
-            return CODEC;
+        public MapCodec<? extends SurfaceRules.ConditionSource> codec() {
+            return CODEC.codec();
         }
 
         public SurfaceRules.Condition apply(final SurfaceRules.Context context) {

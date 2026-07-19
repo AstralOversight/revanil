@@ -51,10 +51,8 @@ public class Lang extends FabricLanguageProvider {
         translationBuilder.add("item.minecraft.smithing_template.netherite_upgrade.applies_to", "Gold Equipment");
 
         translationBuilder.add(RBlocks.MALACHITE_BLOCK, "Malachite Block");
-        translationBuilder.add(RBlocks.MALACHITE_BLOCK.asItem(), "Malachite Block");
         translationBuilder.add(RItems.MALACHITE_CHUNK, "Malachite Chunk");
         translationBuilder.add(RBlocks.HEMATITE_BLOCK, "Hematite Block");
-        translationBuilder.add(RBlocks.HEMATITE_BLOCK.asItem(), "Hematite Block");
         translationBuilder.add(RItems.HEMATITE_CHUNK, "Hematite Chunk");
     }
 

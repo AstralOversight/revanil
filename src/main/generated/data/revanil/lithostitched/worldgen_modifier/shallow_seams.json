@@ -441,9 +441,7 @@
               "type": "minecraft:condition",
               "if_true": {
                 "type": "minecraft:biome",
-                "biome_is": [
-                  "minecraft:deep_dark"
-                ]
+                "biome_is": "minecraft:deep_dark"
               },
               "then_run": {
                 "type": "minecraft:block",
@@ -456,9 +454,7 @@
               "type": "minecraft:condition",
               "if_true": {
                 "type": "minecraft:biome",
-                "biome_is": [
-                  "minecraft:desert"
-                ]
+                "biome_is": "minecraft:desert"
               },
               "then_run": {
                 "type": "minecraft:block",

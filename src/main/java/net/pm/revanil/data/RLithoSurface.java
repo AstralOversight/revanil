@@ -3,13 +3,16 @@ package net.pm.revanil.data;
 import dev.worldgen.lithostitched.api.registry.LithostitchedRegistries;
 import dev.worldgen.lithostitched.api.util.InjectionType;
 import dev.worldgen.lithostitched.api.worldgen.modifier.WorldgenModifier;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.dimension.LevelStem;
 import net.minecraft.world.level.levelgen.Noises;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
@@ -68,27 +71,27 @@ public class RLithoSurface {
     }
 
     public static void bootstrap(BootstrapContext<WorldgenModifier> context) {
-
-        //Base stone replacements
-        SurfaceRules.RuleSource stoneBiomeR = SurfaceRules.sequence(
-                //Dripstone Biomes
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(), DRIPSTONE),
-                //Sandstone Biomes
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(), SANDSTONE),
-                //Red Sandstone Biomes
-                SurfaceRules.ifTrue(SurfaceRules.isBiome(), RED_SANDSTONE)
-        );
+        HolderGetter<Biome> biomes = context.lookup(Registries.BIOME);
+//        //Base stone replacements
+//        SurfaceRules.RuleSource stoneBiomeR = SurfaceRules.sequence(
+//                //Dripstone Biomes
+//                SurfaceRules.ifTrue(SurfaceRules.isBiome(), DRIPSTONE),
+//                //Sandstone Biomes
+//                SurfaceRules.ifTrue(SurfaceRules.isBiome(), SANDSTONE),
+//                //Red Sandstone Biomes
+//                SurfaceRules.ifTrue(SurfaceRules.isBiome(), RED_SANDSTONE)
+//        );
 
         context.register(shallow_seams,
-                WorldgenModifier.builder().addSurfaceRule(LevelStem.OVERWORLD, InjectionType.APPEND, SurfaceRules.sequence(
-                        shallowStoneSeams(),
-                        shallowSoilSeams()
+                WorldgenModifier.builder().addSurfaceRule(Level.OVERWORLD, InjectionType.APPEND, SurfaceRules.sequence(
+                        shallowStoneSeams(biomes, context),
+                        shallowSoilSeams(biomes, context)
                 )));
 
         // Deep seams only where deepslate will be
         // we need to add checks so that it doesn't encroach on Bedrock or Stone... so here they are
         context.register(deep_seams,
-                WorldgenModifier.builder().addSurfaceRule(LevelStem.OVERWORLD, InjectionType.PREPEND, SurfaceRules.ifTrue(
+                WorldgenModifier.builder().addSurfaceRule(Level.OVERWORLD, InjectionType.PREPEND, SurfaceRules.ifTrue(
                         SurfaceRules.not(
                                 SurfaceRules.verticalGradient("bedrock_floor_location",
                                         VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(5))),
@@ -97,7 +100,7 @@ public class RLithoSurface {
                                         "deep_seams",
                                         VerticalAnchor.absolute(0),
                                         VerticalAnchor.absolute(8)),
-                                deepStoneSeams()))));
+                                deepStoneSeams(biomes, context)))));
 
 //        // kinda buggy
 //        context.register(nether_seams,
@@ -108,25 +111,26 @@ public class RLithoSurface {
 
         //technically still has the same issues as the other ones too but I like it sooooooo
         context.register(end_seams,
-                WorldgenModifier.builder().addSurfaceRule(LevelStem.END, InjectionType.PREPEND, SurfaceRules.sequence(
-                        endStoneSeams(),
-                        endSoilSeams()
+                WorldgenModifier.builder().addSurfaceRule(Level.END, InjectionType.PREPEND, SurfaceRules.sequence(
+                        endStoneSeams(biomes, context),
+                        endSoilSeams(biomes, context)
                 )));
     }
 
     // The alternative in the stone layer
-    private static SurfaceRules.RuleSource shallowStoneSeams() {
+    private static SurfaceRules.RuleSource shallowStoneSeams(HolderGetter<Biome> biomes, BootstrapContext<WorldgenModifier> context) {
         SurfaceRules.RuleSource altForBiome = SurfaceRules.sequence(
                 //Calcite Biomes
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(
+                        biomes,
                         Biomes.CHERRY_GROVE,
                         Biomes.FROZEN_PEAKS,
                         Biomes.GROVE,
                         Biomes.JAGGED_PEAKS,
-                        Biomes.STONY_PEAKS
-                ), CALCITE),
+                        Biomes.STONY_PEAKS), CALCITE),
                 //Prismarine Biomes
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(
+                        biomes,
                         Biomes.COLD_OCEAN,
                         Biomes.DEEP_COLD_OCEAN,
                         Biomes.DEEP_DARK,
@@ -141,6 +145,7 @@ public class RLithoSurface {
                 ), PRISMARINE),
                 //Granite Biomes
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(
+                        biomes,
                         Biomes.BADLANDS,
                         Biomes.DESERT,
                         Biomes.DRIPSTONE_CAVES,
@@ -158,6 +163,7 @@ public class RLithoSurface {
                 ), GRANITE),
                 //Andesite Biomes
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(
+                        biomes,
                         Biomes.BAMBOO_JUNGLE,
                         Biomes.DARK_FOREST,
                         Biomes.FLOWER_FOREST,
@@ -175,6 +181,7 @@ public class RLithoSurface {
                 ), ANDESITE),
                 //Diorite Biomes
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(
+                        biomes,
                         Biomes.BEACH,
                         Biomes.BIRCH_FOREST,
                         Biomes.ICE_SPIKES,
@@ -197,24 +204,28 @@ public class RLithoSurface {
     }
 
     // Soil seams in the stone layer
-    private static SurfaceRules.RuleSource shallowSoilSeams() {
+    private static SurfaceRules.RuleSource shallowSoilSeams(HolderGetter<Biome> biomes, BootstrapContext<WorldgenModifier> context) {
         SurfaceRules.RuleSource altForBiome = SurfaceRules.sequence(
                 //Sculk Biomes
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(
+                        biomes,
                         Biomes.DEEP_DARK
                 ), SCULK),
                 //Sandstone Biomes
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(
+                        biomes,
                         Biomes.DESERT
                 ), SANDSTONE),
                 //Red Sandstone Biomes
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(
+                        biomes,
                         Biomes.BADLANDS,
                         Biomes.ERODED_BADLANDS,
                         Biomes.WOODED_BADLANDS
                 ), RED_SANDSTONE),
                 //Clay Biomes
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(
+                        biomes,
                         Biomes.DRIPSTONE_CAVES,
                         Biomes.LUSH_CAVES,
                         Biomes.MANGROVE_SWAMP,
@@ -222,6 +233,7 @@ public class RLithoSurface {
                 ), CLAY),
                 //Dirt Biomes
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(
+                        biomes,
                         Biomes.BAMBOO_JUNGLE,
                         Biomes.BIRCH_FOREST,
                         Biomes.CHERRY_GROVE,
@@ -249,10 +261,11 @@ public class RLithoSurface {
     }
 
     // The alternative in the deepslate layer
-    private static SurfaceRules.RuleSource deepStoneSeams() {
+    private static SurfaceRules.RuleSource deepStoneSeams(HolderGetter<Biome> biomes, BootstrapContext<WorldgenModifier> context) {
         SurfaceRules.RuleSource altForBiome = SurfaceRules.sequence(
                 //Smooth Basalt Biomes
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(
+                        biomes,
                         Biomes.CHERRY_GROVE,
                         Biomes.FROZEN_PEAKS,
                         Biomes.GROVE,
@@ -285,15 +298,17 @@ public class RLithoSurface {
     }
 
     // The alternative stones in the nether
-    private static SurfaceRules.RuleSource netherStoneSeams() {
+    private static SurfaceRules.RuleSource netherStoneSeams(HolderGetter<Biome> biomes, BootstrapContext<WorldgenModifier> context) {
         SurfaceRules.RuleSource altForBiome = SurfaceRules.sequence(
                 //Blackstone Biomes
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(
+                        biomes,
                         Biomes.BASALT_DELTAS,
                         Biomes.SOUL_SAND_VALLEY
                 ), BLACKSTONE),
                 //Magma Biomes
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(
+                        biomes,
                         Biomes.CRIMSON_FOREST,
                         Biomes.NETHER_WASTES,
                         Biomes.WARPED_FOREST
@@ -309,10 +324,11 @@ public class RLithoSurface {
     }
 
     // Soil seams in the nether
-    private static SurfaceRules.RuleSource netherSoilSeams() {
+    private static SurfaceRules.RuleSource netherSoilSeams(HolderGetter<Biome> biomes, BootstrapContext<WorldgenModifier> context) {
         SurfaceRules.RuleSource altForBiome = SurfaceRules.sequence(
                 //Soul Sand Biomes
                 SurfaceRules.ifTrue(SurfaceRules.isBiome(
+                        biomes,
                         Biomes.NETHER_WASTES,
                         Biomes.SOUL_SAND_VALLEY
                 ), SOUL_SAND)
@@ -326,7 +342,7 @@ public class RLithoSurface {
     }
 
     // Alternate stone in the end
-    private static SurfaceRules.RuleSource endStoneSeams() {
+    private static SurfaceRules.RuleSource endStoneSeams(HolderGetter<Biome> biomes, BootstrapContext<WorldgenModifier> context) {
 //        // Since it's jst obsidian we can disable this right now
         SurfaceRules.RuleSource altForBiome = OBSIDIAN; // SurfaceRules.sequence(
 //                //Obsidian Biomes
@@ -348,7 +364,7 @@ public class RLithoSurface {
     }
 
     // What would be soil, if the end had any...
-    private static SurfaceRules.RuleSource endSoilSeams() {
+    private static SurfaceRules.RuleSource endSoilSeams(HolderGetter<Biome> biomes, BootstrapContext<WorldgenModifier> context) {
         // since it's all air, I'll just go and make it easy...
         SurfaceRules.RuleSource altForBiome = AIR; // SurfaceRules.sequence(
 //                //Air Biomes
