@@ -17,6 +17,7 @@ public class DynamicRegistries extends FabricDynamicRegistryProvider {
     @Override
     protected void configure(HolderLookup.Provider provider, Entries entries) {
         entries.addAll(provider.lookupOrThrow(Registries.NOISE_SETTINGS));
+        entries.addAll(provider.lookupOrThrow(Registries.MATERIAL_RULE));
         entries.addAll(provider.lookupOrThrow(LithostitchedRegistries.WORLDGEN_MODIFIER));
     }
 

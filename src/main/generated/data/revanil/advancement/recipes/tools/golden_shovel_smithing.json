@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "revanil:golden_shovel_smithing"
+        "recipes": "revanil:golden_shovel_smithing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

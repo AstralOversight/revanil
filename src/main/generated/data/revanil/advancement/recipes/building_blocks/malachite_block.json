@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "revanil:malachite_block"
+        "recipes": "revanil:malachite_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

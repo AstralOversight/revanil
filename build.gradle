@@ -29,7 +29,7 @@ fabricApi {
 }
 
 loom {
-	accessWidenerPath = file("src/main/resources/revanil.accesswidener")
+	accessWidenerPath = file("src/main/resources/revanil.classtweaker")
 }
 
 dependencies {

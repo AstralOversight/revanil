@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "revanil:golden_helmet_smithing"
+        "recipes": "revanil:golden_helmet_smithing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

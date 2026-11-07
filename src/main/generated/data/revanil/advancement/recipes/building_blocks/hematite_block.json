@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "revanil:hematite_block"
+        "recipes": "revanil:hematite_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

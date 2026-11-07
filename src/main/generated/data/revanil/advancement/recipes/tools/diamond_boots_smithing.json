@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "revanil:diamond_boots_smithing"
+        "recipes": "revanil:diamond_boots_smithing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

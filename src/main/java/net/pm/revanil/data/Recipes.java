@@ -2,19 +2,21 @@ package net.pm.revanil.data;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.advancements.Advancement;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CookingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.block.Blocks;
 import net.pm.revanil.Revanil;
 import net.pm.revanil.world.item.RItems;
@@ -85,8 +87,8 @@ public class Recipes extends FabricRecipeProvider {
     }
 
     @Override
-    protected RecipeProvider createRecipeProvider(HolderLookup.Provider wrapperLookup, RecipeOutput recipeExporter) {
-        return new RecipeProvider(wrapperLookup, recipeExporter) {
+    protected RecipeProvider createRecipeProvider(HolderLookup.Provider registries, BootstrapContext<Recipe<?>> recipes, BootstrapContext<Advancement> advancements) {
+        return new RecipeProvider(recipes, advancements) {
             @Override
             public void buildRecipes() {
                 //Upgrade template recipes
@@ -111,7 +113,7 @@ public class Recipes extends FabricRecipeProvider {
                         .define('#', Items.COPPER_INGOT)
                         .define('O', Items.LEATHER_HORSE_ARMOR)
                         .unlockedBy("has_material", has(Items.LEATHER_HORSE_ARMOR))
-                        .save(recipeExporter);
+                        .save(output);
                 shaped(RecipeCategory.TOOLS, Items.COPPER_NAUTILUS_ARMOR)
                         .pattern("###")
                         .pattern("#O#")
@@ -119,7 +121,7 @@ public class Recipes extends FabricRecipeProvider {
                         .define('#', Items.COPPER_INGOT)
                         .define('O', Items.NAUTILUS_SHELL)
                         .unlockedBy("has_material", has(Items.NAUTILUS_SHELL))
-                        .save(recipeExporter);
+                        .save(output);
 
                 chainmail();
 
@@ -132,7 +134,7 @@ public class Recipes extends FabricRecipeProvider {
                         .define('M', Blocks.SHORT_GRASS)
                         .define('#', Blocks.DIRT)
                         .unlockedBy("has_material", has(Blocks.SHORT_GRASS))
-                        .save(recipeExporter);
+                        .save(output);
 
                 shaped(RecipeCategory.REDSTONE, Blocks.TNT)
                         .pattern("G#")
@@ -140,7 +142,7 @@ public class Recipes extends FabricRecipeProvider {
                         .define('G', Items.GUNPOWDER)
                         .define('#', ItemTags.SAND)
                         .unlockedBy("has_material", has(Items.GUNPOWDER))
-                        .save(recipeExporter);
+                        .save(output);
             }
 
             //Chainmail Armor
@@ -150,27 +152,27 @@ public class Recipes extends FabricRecipeProvider {
                         .pattern("# #")
                         .define('#', Items.IRON_CHAIN)
                         .unlockedBy("has_material", has(Items.IRON_INGOT))
-                        .save(recipeExporter);
+                        .save(output);
                 shaped(RecipeCategory.TOOLS, Items.CHAINMAIL_CHESTPLATE)
                         .pattern("# #")
                         .pattern("###")
                         .pattern("###")
                         .define('#', Items.IRON_CHAIN)
                         .unlockedBy("has_material", has(Items.IRON_INGOT))
-                        .save(recipeExporter);
+                        .save(output);
                 shaped(RecipeCategory.TOOLS, Items.CHAINMAIL_LEGGINGS)
                         .pattern("###")
                         .pattern("# #")
                         .pattern("# #")
                         .define('#', Items.IRON_CHAIN)
                         .unlockedBy("has_material", has(Items.IRON_INGOT))
-                        .save(recipeExporter);
+                        .save(output);
                 shaped(RecipeCategory.TOOLS, Items.CHAINMAIL_BOOTS)
                         .pattern("# #")
                         .pattern("# #")
                         .define('#', Items.IRON_CHAIN)
                         .unlockedBy("has_material", has(Items.IRON_INGOT))
-                        .save(recipeExporter);
+                        .save(output);
             }
 
             public void malachite() {
@@ -179,13 +181,13 @@ public class Recipes extends FabricRecipeProvider {
                         .pattern("##")
                         .define('#', RItems.MALACHITE_CHUNK)
                         .unlockedBy("has_material", has(RItems.MALACHITE_CHUNK))
-                        .save(recipeExporter);
+                        .save(output);
                 SimpleCookingRecipeBuilder.smelting(Ingredient.of(RItems.MALACHITE_CHUNK), RecipeCategory.MISC, CookingBookCategory.MISC, Items.COPPER_NUGGET, 0.5f, 200)
                         .unlockedBy("has_material", has(RItems.MALACHITE_CHUNK))
-                        .save(recipeExporter, getSimpleRecipeName(Items.COPPER_NUGGET) + "_from_smelting_" + getSimpleRecipeName(RItems.MALACHITE_CHUNK));
+                        .save(output, getSimpleRecipeName(Items.COPPER_NUGGET) + "_from_smelting_" + getSimpleRecipeName(RItems.MALACHITE_CHUNK));
                 SimpleCookingRecipeBuilder.blasting(Ingredient.of(RItems.MALACHITE_CHUNK), RecipeCategory.MISC, CookingBookCategory.MISC, Items.COPPER_NUGGET, 0.5f, 100)
                         .unlockedBy("has_material", has(RItems.MALACHITE_CHUNK))
-                        .save(recipeExporter, getSimpleRecipeName(Items.COPPER_NUGGET) + "_from_blasting_" + getSimpleRecipeName(RItems.MALACHITE_CHUNK));
+                        .save(output, getSimpleRecipeName(Items.COPPER_NUGGET) + "_from_blasting_" + getSimpleRecipeName(RItems.MALACHITE_CHUNK));
             }
 
             public void hematite() {
@@ -194,13 +196,13 @@ public class Recipes extends FabricRecipeProvider {
                         .pattern("##")
                         .define('#', RItems.HEMATITE_CHUNK)
                         .unlockedBy("has_material", has(RItems.HEMATITE_CHUNK))
-                        .save(recipeExporter);
+                        .save(output);
                 SimpleCookingRecipeBuilder.smelting(Ingredient.of(RItems.HEMATITE_CHUNK), RecipeCategory.MISC, CookingBookCategory.MISC, Items.IRON_NUGGET, 0.5f, 200)
                         .unlockedBy("has_material", has(RItems.HEMATITE_CHUNK))
-                        .save(recipeExporter, getSimpleRecipeName(Items.IRON_NUGGET) + "_from_smelting_" + getSimpleRecipeName(RItems.HEMATITE_CHUNK));
+                        .save(output, getSimpleRecipeName(Items.IRON_NUGGET) + "_from_smelting_" + getSimpleRecipeName(RItems.HEMATITE_CHUNK));
                 SimpleCookingRecipeBuilder.blasting(Ingredient.of(RItems.HEMATITE_CHUNK), RecipeCategory.MISC, CookingBookCategory.MISC, Items.IRON_NUGGET, 0.5f, 100)
                         .unlockedBy("has_material", has(RItems.HEMATITE_CHUNK))
-                        .save(recipeExporter, getSimpleRecipeName(Items.IRON_NUGGET) + "_from_blasting_" + getSimpleRecipeName(RItems.HEMATITE_CHUNK));
+                        .save(output, getSimpleRecipeName(Items.IRON_NUGGET) + "_from_blasting_" + getSimpleRecipeName(RItems.HEMATITE_CHUNK));
             }
 
             public void genUpgradeTemplate(Item template, Item material, Item core, Item other) {
@@ -213,7 +215,7 @@ public class Recipes extends FabricRecipeProvider {
                         .define('X', core)
                         .group(BuiltInRegistries.ITEM.getKey(template.asItem()).toString())
                         .unlockedBy("has_material", has(material))
-                        .save(recipeExporter, getSimpleRecipeName(template)+"_core");
+                        .save(output, getSimpleRecipeName(template)+"_core");
                 shaped(RecipeCategory.TOOLS, template, 2)
                         .pattern("OMO")
                         .pattern("MXM")
@@ -223,7 +225,7 @@ public class Recipes extends FabricRecipeProvider {
                         .define('X', template)
                         .group(BuiltInRegistries.ITEM.getKey(template.asItem()).toString())
                         .unlockedBy("has_material", has(material))
-                        .save(recipeExporter, getSimpleRecipeName(template)+"_duplication");
+                        .save(output, getSimpleRecipeName(template)+"_duplication");
             }
 
             public void genSmithing(Item template, Map<Item, Item> upgrades, TagKey<Item> material) {
@@ -231,7 +233,7 @@ public class Recipes extends FabricRecipeProvider {
                 for (Item key : upgrades.keySet()) {
                     SmithingTransformRecipeBuilder.smithing(Ingredient.of(template), Ingredient.of(key), tag(material), RecipeCategory.TOOLS, upgrades.get(key))
                             .unlocks("has_template", has(template))
-                            .save(recipeExporter, getSimpleRecipeName(upgrades.get(key))+"_smithing");
+                            .save(output, getSimpleRecipeName(upgrades.get(key))+"_smithing");
                 }
             }
 
@@ -242,10 +244,10 @@ public class Recipes extends FabricRecipeProvider {
                     //Reducing back to material
                     SimpleCookingRecipeBuilder.smelting(Ingredient.of(upgrades.values().stream()), RecipeCategory.MISC, CookingBookCategory.MISC, matRep, 0.5f, 200)
                             .unlockedBy("has_material", has(template))
-                            .save(recipeExporter, getSimpleRecipeName(matRep) + "_reduction_from_smelting");
+                            .save(output, getSimpleRecipeName(matRep) + "_reduction_from_smelting");
                     SimpleCookingRecipeBuilder.blasting(Ingredient.of(upgrades.values().stream()), RecipeCategory.MISC, CookingBookCategory.MISC, matRep, 0.5f, 100)
                             .unlockedBy("has_material", has(template))
-                            .save(recipeExporter, getSimpleRecipeName(matRep) + "_reduction_from_blasting");
+                            .save(output, getSimpleRecipeName(matRep) + "_reduction_from_blasting");
                 }
             }
         };

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "revanil:gold_ingot_reduction_from_smelting"
+        "recipes": "revanil:gold_ingot_reduction_from_smelting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

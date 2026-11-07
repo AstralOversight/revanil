@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "revanil:netherite_ingot_reduction_from_blasting"
+        "recipes": "revanil:netherite_ingot_reduction_from_blasting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

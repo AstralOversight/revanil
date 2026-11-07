@@ -4,14 +4,10 @@ import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.references.BlockItemIds;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Block;
-import net.pm.revanil.Revanil;
 import net.pm.revanil.references.RBlockItemIds;
 
 import java.util.concurrent.CompletableFuture;
@@ -36,10 +32,10 @@ public class RBlockTags extends FabricTagsProvider.BlockTagsProvider {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(RBlockItemIds.MALACHITE_BLOCK.block());
 
-        tag(BlockTags.OVERWORLD_CARVER_REPLACEABLES)
-                .add(BlockItemIds.PRISMARINE.block())
-                .add(RBlockItemIds.MALACHITE_BLOCK.block())
-                .add(RBlockItemIds.HEMATITE_BLOCK.block());
+//        tag(BlockTags)
+//                .add(BlockItemIds.PRISMARINE.block())
+//                .add(RBlockItemIds.MALACHITE_BLOCK.block())
+//                .add(RBlockItemIds.HEMATITE_BLOCK.block());
 
         recreateNeedsTags(wrapperLookup);
     }

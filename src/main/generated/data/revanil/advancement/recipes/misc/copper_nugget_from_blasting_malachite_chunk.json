@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "revanil:copper_nugget_from_blasting_malachite_chunk"
+        "recipes": "revanil:copper_nugget_from_blasting_malachite_chunk"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

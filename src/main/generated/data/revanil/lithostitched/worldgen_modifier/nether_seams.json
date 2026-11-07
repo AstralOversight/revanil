@@ -1,0 +1,6 @@
+{
+  "type": "lithostitched:set_material_rule",
+  "injection_type": "prepend",
+  "material_rule": "revanil:nether_seams",
+  "target_rules": "minecraft:nether"
+}

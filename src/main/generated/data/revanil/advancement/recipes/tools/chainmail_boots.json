@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "revanil:chainmail_boots"
+        "recipes": "revanil:chainmail_boots"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

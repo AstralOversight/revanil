@@ -5,7 +5,6 @@
   "mixins": [
     "ArmorMaterialsMixin",
     "ArmorTypeMixin",
-    "BedBlockMixin",
     "BedRuleMixin",
     "BlockBehaviourMixin",
     "BlocksMixin",
@@ -16,17 +15,14 @@
     "IceBlockMixin",
     "ItemEntityMixin",
     "ItemMixin",
-    "ItemsMixin",
     "JsonDataLoaderMixin",
-    "OreVeinifierMixin",
     "PlayerMixin",
     "RespawnAnchorBlockMixin",
     "SnowLayerBlockMixin",
     "SweetBerryBushBlockMixin",
     "ToolMaterialsMixin",
     "WeatheringCopperGrateBlockMixin",
-    "surfaceRules.ConditionSourceMixin",
-    "surfaceRules.VerticalGradientMixin"
+    "surfaceRules.VerticalGradientConditionMixin"
   ],
   "injectors": {
     "defaultRequire": 1

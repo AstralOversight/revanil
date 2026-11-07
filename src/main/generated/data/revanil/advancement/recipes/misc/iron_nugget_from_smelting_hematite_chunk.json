@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "revanil:iron_nugget_from_smelting_hematite_chunk"
+        "recipes": "revanil:iron_nugget_from_smelting_hematite_chunk"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

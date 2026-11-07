@@ -4,8 +4,10 @@ import dev.worldgen.lithostitched.api.registry.LithostitchedRegistries;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.core.RegistrySetBuilder;
+import net.minecraft.core.registries.Registries;
 import net.pm.revanil.data.*;
-import net.pm.revanil.data.RLithoSurface;
+import net.pm.revanil.data.RLithoMaterialRules;
+import net.pm.revanil.data.worldgen.material.RMaterialRules;
 
 public class RevanilDataGenerator implements DataGeneratorEntrypoint {
 
@@ -24,7 +26,8 @@ public class RevanilDataGenerator implements DataGeneratorEntrypoint {
 
     @Override
     public void buildRegistry(RegistrySetBuilder registryBuilder) {
-        registryBuilder.add(LithostitchedRegistries.WORLDGEN_MODIFIER, RLithoSurface::bootstrap);
+        registryBuilder.add(Registries.MATERIAL_RULE, RMaterialRules::bootstrap);
+        registryBuilder.add(LithostitchedRegistries.WORLDGEN_MODIFIER, RLithoMaterialRules::bootstrap);
         registryBuilder.add(LithostitchedRegistries.WORLDGEN_MODIFIER, RLithoRemove::bootstrap);
     }
 }

@@ -15,10 +15,10 @@ import static net.minecraft.world.level.block.FarmlandBlock.MOISTURE;
 
 @Mixin(FarmlandBlock.class)
 public class FarmBlockMixin {
-    @WrapOperation(method = "fallOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/FarmlandBlock;turnToDirt(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V"))
-    private void revanil$onlyIfWatered(Entity entity, BlockState blockState, Level level, BlockPos blockPos, Operation<Void> original) {
-        if (blockState.getValue(MOISTURE) <= 0) {
-            original.call(entity, blockState, level, blockPos);
+    @WrapOperation(method = "fallOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/FarmlandBlock;turnToBaseBlock(Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V"))
+    private void revanil$onlyIfWatered(FarmlandBlock instance, Entity sourceEntity, BlockState state, Level level, BlockPos pos, Operation<Void> original) {
+        if (state.getValue(MOISTURE) <= 0) {
+            original.call(instance, sourceEntity, state, level, pos);
         }
     }
 

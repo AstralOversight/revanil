@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "revanil:tnt"
+        "recipes": "revanil:tnt"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

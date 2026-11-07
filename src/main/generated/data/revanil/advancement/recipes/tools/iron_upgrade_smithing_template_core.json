@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "revanil:iron_upgrade_smithing_template_core"
+        "recipes": "revanil:iron_upgrade_smithing_template_core"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

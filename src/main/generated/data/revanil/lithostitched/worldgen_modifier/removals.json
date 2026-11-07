@@ -13,5 +13,6 @@
     "minecraft:ore_andesite_upper",
     "minecraft:ore_infested"
   ],
+  "priority": 1000,
   "step": "underground_ores"
 }

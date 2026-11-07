@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "revanil:copper_nautilus_armor"
+        "recipes": "revanil:copper_nautilus_armor"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

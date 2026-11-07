@@ -78,7 +78,7 @@ public class JsonDataLoaderMixin {
         banned.add(Identifier.fromNamespaceAndPath(namespace, "recipe/" + name + ".json"));
     }
 
-    @WrapOperation(method = "scanDirectory(Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/resources/FileToIdConverter;Lcom/mojang/serialization/DynamicOps;Lcom/mojang/serialization/Codec;Ljava/util/Map;)V", at = @At(value = "INVOKE", target = "Ljava/util/Iterator;next()Ljava/lang/Object;"))
+    @WrapOperation(method = "prepare(Lnet/minecraft/server/packs/resources/ResourceManager;Lnet/minecraft/util/profiling/ProfilerFiller;)Ljava/util/Map;", at = @At(value = "INVOKE", target = "Ljava/util/Iterator;next()Ljava/lang/Object;"))
     private static <E> E revanil$makeSkip(Iterator<E> instance, Operation<E> original) {
         E next = original.call(instance);
         while (banned.contains(((Map.Entry<Identifier, Resource>) next).getKey())) {

@@ -1,0 +1,171 @@
+{
+  "type": "minecraft:sequence",
+  "sequence": [
+    {
+      "type": "minecraft:sequence",
+      "sequence": [
+        {
+          "type": "minecraft:condition",
+          "if_true": {
+            "type": "minecraft:noise_threshold",
+            "is_3d": true,
+            "max_threshold": 0.0125,
+            "min_threshold": -0.0125,
+            "noise": "minecraft:calcite"
+          },
+          "then_run": {
+            "type": "minecraft:sequence",
+            "sequence": [
+              {
+                "type": "minecraft:condition",
+                "if_true": {
+                  "type": "minecraft:biome",
+                  "biome_is": [
+                    "minecraft:basalt_deltas",
+                    "minecraft:soul_sand_valley"
+                  ]
+                },
+                "then_run": {
+                  "type": "minecraft:block",
+                  "result_state": "minecraft:blackstone"
+                }
+              },
+              {
+                "type": "minecraft:condition",
+                "if_true": {
+                  "type": "minecraft:biome",
+                  "biome_is": [
+                    "minecraft:crimson_forest",
+                    "minecraft:nether_wastes",
+                    "minecraft:warped_forest"
+                  ]
+                },
+                "then_run": {
+                  "type": "minecraft:block",
+                  "result_state": "minecraft:magma_block"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "minecraft:condition",
+          "if_true": {
+            "type": "minecraft:noise_threshold",
+            "is_3d": true,
+            "max_threshold": -0.5,
+            "min_threshold": -0.525,
+            "noise": "minecraft:calcite"
+          },
+          "then_run": {
+            "type": "minecraft:sequence",
+            "sequence": [
+              {
+                "type": "minecraft:condition",
+                "if_true": {
+                  "type": "minecraft:biome",
+                  "biome_is": [
+                    "minecraft:basalt_deltas",
+                    "minecraft:soul_sand_valley"
+                  ]
+                },
+                "then_run": {
+                  "type": "minecraft:block",
+                  "result_state": "minecraft:blackstone"
+                }
+              },
+              {
+                "type": "minecraft:condition",
+                "if_true": {
+                  "type": "minecraft:biome",
+                  "biome_is": [
+                    "minecraft:crimson_forest",
+                    "minecraft:nether_wastes",
+                    "minecraft:warped_forest"
+                  ]
+                },
+                "then_run": {
+                  "type": "minecraft:block",
+                  "result_state": "minecraft:magma_block"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "minecraft:condition",
+          "if_true": {
+            "type": "minecraft:noise_threshold",
+            "is_3d": true,
+            "max_threshold": 0.525,
+            "min_threshold": 0.5,
+            "noise": "minecraft:calcite"
+          },
+          "then_run": {
+            "type": "minecraft:sequence",
+            "sequence": [
+              {
+                "type": "minecraft:condition",
+                "if_true": {
+                  "type": "minecraft:biome",
+                  "biome_is": [
+                    "minecraft:basalt_deltas",
+                    "minecraft:soul_sand_valley"
+                  ]
+                },
+                "then_run": {
+                  "type": "minecraft:block",
+                  "result_state": "minecraft:blackstone"
+                }
+              },
+              {
+                "type": "minecraft:condition",
+                "if_true": {
+                  "type": "minecraft:biome",
+                  "biome_is": [
+                    "minecraft:crimson_forest",
+                    "minecraft:nether_wastes",
+                    "minecraft:warped_forest"
+                  ]
+                },
+                "then_run": {
+                  "type": "minecraft:block",
+                  "result_state": "minecraft:magma_block"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "minecraft:condition",
+      "if_true": {
+        "type": "minecraft:noise_threshold",
+        "is_3d": true,
+        "max_threshold": 0.02,
+        "min_threshold": -0.02,
+        "noise": "minecraft:gravel"
+      },
+      "then_run": {
+        "type": "minecraft:sequence",
+        "sequence": [
+          {
+            "type": "minecraft:condition",
+            "if_true": {
+              "type": "minecraft:biome",
+              "biome_is": [
+                "minecraft:nether_wastes",
+                "minecraft:soul_sand_valley"
+              ]
+            },
+            "then_run": {
+              "type": "minecraft:block",
+              "result_state": "minecraft:soul_soil"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

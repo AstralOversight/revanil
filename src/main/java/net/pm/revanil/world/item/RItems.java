@@ -1,14 +1,19 @@
 package net.pm.revanil.world.item;
 
+import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.references.BlockItemId;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.pm.revanil.references.RBlockItemIds;
 import net.pm.revanil.references.RItemIds;
+import net.pm.revanil.world.item.component.RConsumables;
+import net.pm.revanil.world.item.component.RFoods;
 import net.pm.revanil.world.level.block.RBlocks;
 
 import java.util.function.BiFunction;
@@ -46,5 +51,20 @@ public class RItems {
     }
 
     public static void init() {
+        DefaultItemComponentEvents.MODIFY.register(modifyContext -> {
+            modifyContext.modify(Items.BEETROOT,builder -> builder.set(DataComponents.CONSUMABLE, RConsumables.BEETROOT));
+            modifyContext.modify(Items.BEETROOT_SOUP,builder -> builder.set(DataComponents.CONSUMABLE, RConsumables.BEETROOT_SOUP));
+            modifyContext.modify(Items.GLISTERING_MELON_SLICE,builder -> {
+                builder.set(DataComponents.CONSUMABLE, RConsumables.GLISTERING_MELON_SLICE);
+                builder.set(DataComponents.FOOD, RFoods.GLISTERING_MELON_SLICE);
+            });
+            modifyContext.modify(Items.GLOW_BERRIES,builder -> builder.set(DataComponents.CONSUMABLE, RConsumables.GLOW_BERRIES));
+            modifyContext.modify(Items.GOLDEN_CARROT,builder -> builder.set(DataComponents.CONSUMABLE, RConsumables.GOLDEN_CARROT));
+            modifyContext.modify(Items.POPPED_CHORUS_FRUIT,builder -> {
+                builder.set(DataComponents.CONSUMABLE, RConsumables.POPPED_CHORUS_FRUIT);
+                builder.set(DataComponents.FOOD, RFoods.POPPED_CHORUS_FRUIT);
+            });
+        });
+
     }
 }

@@ -8,18 +8,14 @@ import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(BedRule.class)
 public class BedRuleMixin {
+    // FIXME: Some of this is super broken.
     @WrapMethod(method = "canSleep(Lnet/minecraft/world/level/Level;)Z")
-    private boolean revanil$neverAlwaysSwitch(Level world, Operation<Boolean> original) {
-        return original.call(world) || BedRule.Rule.NEVER == ((BedRule)(Object)this).canSleep();
+    private boolean revanil$neverAlwaysSwitch(Level level, Operation<Boolean> original) {
+        return level.isDarkOutside();
     }
 
     @WrapMethod(method = "canSetSpawn(Lnet/minecraft/world/level/Level;)Z")
-    private boolean revanil$neverSetSpawn(Level world, Operation<Boolean> original) {
-        return false;
-    }
-
-    @WrapMethod(method = "explodes")
-    private boolean revanil$neverExplode(Operation<Boolean> original) {
+    private boolean revanil$neverSetSpawn(Level level, Operation<Boolean> original) {
         return false;
     }
 }

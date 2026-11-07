@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "revanil:golden_axe_smithing"
+        "recipes": "revanil:golden_axe_smithing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

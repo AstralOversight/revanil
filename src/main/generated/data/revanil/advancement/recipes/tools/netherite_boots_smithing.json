@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "revanil:netherite_boots_smithing"
+        "recipes": "revanil:netherite_boots_smithing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
