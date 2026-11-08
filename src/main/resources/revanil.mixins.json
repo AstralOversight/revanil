@@ -18,6 +18,7 @@
     "JsonDataLoaderMixin",
     "PlayerMixin",
     "RespawnAnchorBlockMixin",
+    "GameRulesMixin",
     "SnowLayerBlockMixin",
     "SweetBerryBushBlockMixin",
     "ToolMaterialsMixin",

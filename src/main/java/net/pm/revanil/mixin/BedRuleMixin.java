@@ -8,14 +8,20 @@ import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(BedRule.class)
 public class BedRuleMixin {
-    // FIXME: Some of this is super broken.
+    // TODO: See if I can add a message to say "It's too bright to sleep here." or something.
     @WrapMethod(method = "canSleep(Lnet/minecraft/world/level/Level;)Z")
     private boolean revanil$neverAlwaysSwitch(Level level, Operation<Boolean> original) {
-        return level.isDarkOutside();
+        return level.isDarkOutside() || (level.dimensionType().hasFixedTime() && level.getSkyDarken() >= 4);
     }
 
     @WrapMethod(method = "canSetSpawn(Lnet/minecraft/world/level/Level;)Z")
     private boolean revanil$neverSetSpawn(Level level, Operation<Boolean> original) {
         return false;
+    }
+
+    // FIXME: For some reason this also makes Straw Beds not break after leaving???
+    @WrapMethod(method = "destroyOnUse")
+    private boolean revanil$neverDestroyOnUse(Operation<Boolean> original) {
+        return false;//((BedRule)((Object)this)).destroyOnLeave();
     }
 }
